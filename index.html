@@ -320,7 +320,7 @@ hr.div{border:none;border-top:1px solid var(--border);margin:4px 0 16px}
     </div>
     <div class="topbar-right">
       <select class="month-select" id="mf" onchange="renderAll()">
-        <option value="all">Cả năm 2025</option>
+        <option value="all">Cả năm 2026</option> 
         <option value="0">Tháng 1</option><option value="1">Tháng 2</option>
         <option value="2">Tháng 3</option><option value="3">Tháng 4</option>
         <option value="4">Tháng 5</option><option value="5">Tháng 6</option>
@@ -617,7 +617,7 @@ function buildHTML(){
   return `
 <div class="section">
   <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted2);margin-bottom:10px">
-    Tổng quan 8 kênh${v==='all'?' · Cả năm 2025':' · '+MO_F[+v]}
+    Tổng quan 8 kênh${v==='all'?' · Cả năm 2026':' · '+MO_F[+v]}
     <span style="margin-left:14px;font-size:11px;color:var(--muted)">💰 Tổng chi Ads: <strong style="color:var(--yellow);font-family:'Space Mono',monospace">${fV(total_spend)}</strong></span>
   </div>
   <div class="ov-grid">
