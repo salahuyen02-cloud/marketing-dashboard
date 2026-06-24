@@ -432,12 +432,26 @@ function parseSheet(rows, colMap){
 }
 
 async function fetchCSV(url){
-  if(!url||!url.trim())return null;
-  // Add no-cors workaround: use a CORS proxy for publish URLs
-  // Google Sheets publish CSV URLs are public — use direct fetch
-  const res=await fetch(url.trim());
-  if(!res.ok)throw new Error(`HTTP ${res.status}`);
-  return parseCSV(await res.text());
+  if(!url || !url.trim()) return null;
+
+  const proxy = "https://api.allorigins.win/get?url=";
+
+  try {
+    const res = await fetch(proxy + encodeURIComponent(url.trim()));
+    const data = await res.json();
+
+    const text = data.contents;
+
+    if (!text || text.includes("<html")) {
+      throw new Error("Not CSV");
+    }
+
+    return parseCSV(text);
+
+  } catch (e) {
+    console.error("Fetch CSV error:", e);
+    return null;
+  }
 }
 
 const URL_KEYS=[
